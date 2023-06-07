@@ -3,14 +3,14 @@ import react, { useState } from 'react';
 
 const BoxForm = (props) => {
     const [color, setColor] = useState("");
-    const [boxColor, setBoxColor] = useState([]); // setting state of creating box to empty array so that we can map over and display
+    const [boxColors, setBoxColors] = useState([]); // setting state of creating box to empty array so that we can map over and display
 
 
 
     // Handles submit of form
     const handleSubmit = (e) => {
         e.preventDefault();
-        setBoxColor([...boxColor, color]); // Add the current color to the boxColors array
+        setBoxColors([...boxColors, color]); // Add the current color to the box array
         setColor(""); // Reset the color input field.
     };
 
@@ -25,16 +25,16 @@ const BoxForm = (props) => {
             <form style={{ margin: "20px" }} onSubmit={handleSubmit} >
                 <div>
                     <label>Color</label>
-                    <input type="text" onChange={handleColorChange} />
+                    <input type="text" onChange={handleColorChange} value={color} /> // clears the input becuase "color" is an empty string.
                     <button type="submit" >Add</button>
                 </div>
             </form>
             <>
                 <div style={{ display: "flex", width: "1000px" }} >
-                    {boxColor.map((boxColor, index) => (
+                    {boxColors.map((boxColors, index) => (
                         <div
                             key={index}
-                            style={{ width: "150px", height: "200px", backgroundColor: boxColor, margin: "10px" }}
+                            style={{ width: "150px", height: "200px", backgroundColor: boxColors, margin: "10px" }}
                         ></div>
                     ))}
                 </div>
